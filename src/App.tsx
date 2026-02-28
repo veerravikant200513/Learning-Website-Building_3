@@ -299,7 +299,7 @@ const COUNTRIES = [
 ];
 
 const JoinMe = () => {
-  const [formState, setFormState] = useState({ name: '', email: '', phone: '' });
+  const [formState, setFormState] = useState({ name: '', email: '', phone: '', birthday: '' });
   const [countryCode, setCountryCode] = useState('+1');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [phoneError, setPhoneError] = useState<string | null>(null);
@@ -346,7 +346,7 @@ const JoinMe = () => {
 
       if (response.ok) {
         setStatus('success');
-        setFormState({ name: '', email: '', phone: '' });
+        setFormState({ name: '', email: '', phone: '', birthday: '' });
       } else {
         setStatus('error');
       }
@@ -439,6 +439,17 @@ const JoinMe = () => {
                 disabled={status === 'loading'}
                 value={formState.email}
                 onChange={e => setFormState({ ...formState, email: e.target.value })}
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-xs uppercase tracking-widest text-[#1A1A1A]/40 ml-1">Date of Birth</label>
+              <input
+                type="date"
+                required
+                className="w-full bg-black/5 border border-black/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-[#8C7851]/50 transition-colors [color-scheme:light]"
+                disabled={status === 'loading'}
+                value={formState.birthday}
+                onChange={e => setFormState({ ...formState, birthday: e.target.value })}
               />
             </div>
             <div className="space-y-2">
